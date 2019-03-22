@@ -5,7 +5,21 @@ return array(
         'verify' => 'messenger_test'
     ),
     'api' => array(
-        'messages' => 'https://graph.facebook.com/v2.6/me/messages'
+        'messages' => 'https://graph.facebook.com/v2.6/me/messages',
+        'messenger_profile' => 'https://graph.facebook.com/v2.6/me/messenger_profile'
+    ),
+    'messenger_profile' => array(
+        'get_started' => 'Get Started',
+        'greeting' => array(
+            array(
+                'locale' => 'default',
+                'text' => 'Hello!'
+            ),
+            array(
+                'locale' => 'en_US',
+                'text' => 'Messenger Bot testing.'
+            )
+        )
     )
 );
 ?>
