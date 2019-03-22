@@ -19,7 +19,7 @@ class Messages extends FacebookBot {
     private $access_token;
 
     /**
-     * FacebookBot constructor
+     * Messages constructor
      *
      * @return self
      */
