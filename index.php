@@ -123,7 +123,14 @@ class FacebookBot {
         $this->callSendAPI($sender_psid, $response);
     }
 
-    // Handles messaging_postbacks events
+    /**
+     * Handles messaging_postbacks events
+     *
+     * @param string $sender_psid sender PSID
+     * @param array $received_postback received postback
+     *
+     * @return void 
+     */
     public function handlePostback($sender_psid, $received_postback) {
         $response = null;
 
@@ -141,6 +148,7 @@ class FacebookBot {
                 break;
         }
 
+        // Sends the message to acknowledge the postback
         $this->callSendAPI($sender_psid, $response);
     }
 
