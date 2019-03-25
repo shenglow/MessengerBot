@@ -67,6 +67,56 @@ class MessengerProfile extends FacebookBot {
     }
 
     /**
+     * Setting the Persistent Menu
+     *
+     * @return void
+     */
+    public function setPersistentMenu() {
+        $arr_greeting = $this->getSetting('messenger_profile','persistent_menu');
+        $request_body = '{"persistent_menu" : [';
+        foreach ($arr_greeting as $menu) {
+            $request_body .= '{';
+            foreach ($menu as $key => $value) {
+                if ($key == 'call_to_actions') {
+                    $request_body .= $this->parseCallToActions($value);
+                } else {
+                    $request_body .= '"'.$key.'" : "'.$value.'",';
+                }
+            }
+            $request_body .= '},';
+        }
+        $request_body .= ']}';
+
+        // Send Constructed request body
+        $this->callMessengerProfileAPI($request_body);
+    }
+
+    /**
+     * Parse call to actions for persistent menu
+     * 
+     * @param array Persistent Menu's items
+     *
+     * @return string Persistent Menu's items in JSON format
+     */
+    public function parseCallToActions($call_to_actions) {
+        $request_body = '"call_to_actions" : [';
+        foreach ($call_to_actions as $menu) {
+            $request_body .= '{';
+            foreach ($menu as $key => $value) {
+                if ($key == 'call_to_actions') {
+                    $request_body .= $this->parseCallToActions($value);
+                } else {
+                    $request_body .= '"'.$key.'" : "'.$value.'",';
+                }
+            }
+            $request_body .= '},';
+        }
+        $request_body .= '],';
+
+        return $request_body;
+    }
+
+    /**
      * Sends Constructed request body via the Messenger Profile API
      *
      * @param string $request_body JSON format's request body

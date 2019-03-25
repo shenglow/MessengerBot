@@ -7,4 +7,5 @@ $messengerProfile = new MessengerProfile();
 
 $messengerProfile->setGetStartedButton();
 $messengerProfile->setGreetingText();
+$messengerProfile->setPersistentMenu();
 ?>
